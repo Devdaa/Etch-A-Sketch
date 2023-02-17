@@ -1,0 +1,39 @@
+.grid{
+    width: 600px;
+    height: 600px;
+    display: grid;
+}
+
+header{
+    font-family: 'Oswald', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 500px;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    width: 150px;
+    cursor: pointer;
+}
+
+#colorPicker{
+    width: 150px;
+}
