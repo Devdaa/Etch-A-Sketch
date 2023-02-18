@@ -30,6 +30,9 @@ document.getElementById("colorPicker").addEventListener("input", function() {
 });
 
 colorMode.addEventListener("click", () => {
+    colorMode.classList.add("activeButton");
+    isDolaqidzeModeActive = false;
+    isLomadzeModeActive = false;
     let fractions = grid.querySelectorAll("div");
     color = document.getElementById("colorPicker").value;
     fractions.forEach(fraction => {
@@ -38,6 +41,8 @@ colorMode.addEventListener("click", () => {
 });
 
 eraser.addEventListener("click", () => {
+    isDolaqidzeModeActive = false;
+    isLomadzeModeActive = false;
     let fractions = grid.querySelectorAll("div");
     color = "white";
     fractions.forEach(fraction => {
@@ -49,6 +54,7 @@ clear.addEventListener("click", () => {
     let fractions = grid.querySelectorAll("div");
     fractions.forEach(fraction => {
         fraction.style.backgroundColor = "white";
+        fraction.style.backgroundImage = "none";
     });
 });
 
@@ -61,42 +67,103 @@ toggleBtn.addEventListener("click", () => {
             fraction.classList.add("fractionBorder");
         }
     });
-})
+});
+
+const buttons = document.querySelectorAll('.glow-on-hover');
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    buttons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+  });
+});
 
 function createGrid(w){
+    let isDrawing = false;
     let fractions = grid.querySelectorAll("div");
     fractions.forEach((div) => div.remove());
     for(let i=0; i<(w*w); i++){
         const fraction = document.createElement("div");
         fraction.classList.add("fractionBorder");
-        fraction.addEventListener("mouseover", fractionColor);
+        fraction.addEventListener("mousedown", () => {
+            isDrawing = true;
+        });
+        fraction.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
+        fraction.addEventListener("mousemove", () => {
+            if (isDrawing) {
+                fractionColor(fraction);
+            }
+        });
+        fraction.addEventListener("mouseleave", () => {
+            isDrawing = false;
+        });
+        fraction.addEventListener("mouseenter", (event) => {
+            if (event.buttons === 1) {
+                fractionColor(fraction);
+            }
+        });
+        fraction.setAttribute("draggable", "false");
+        fraction.addEventListener("dragstart", (event) => {
+            event.preventDefault();
+        });
         grid.style.gridTemplateColumns = `repeat(${w}, 1fr)`;
         grid.style.gridTemplateRows = `repeat(${w}, 1fr)`;
         grid.appendChild(fraction).classList.add("fraction");
     }
 }
 
-createGrid(16);
+  
+
+let isDolaqidzeModeActive = false;
+
+dolaqidzeMode.addEventListener("click", () => {
+    isLomadzeModeActive = false;
+    isDolaqidzeModeActive = true;
+});
+
+let isLomadzeModeActive = false;
+
+lomadzeMode.addEventListener("click", () => {
+    isDolaqidzeModeActive = false;
+    isLomadzeModeActive = true;
+});
+
+function fractionColor(fraction) {
+  if (isDolaqidzeModeActive) {
+    fraction.style.backgroundImage = imagesDola[Math.floor(Math.random() * imagesDola.length)];
+    fraction.style.backgroundSize = "cover";
+  }else if(isLomadzeModeActive){
+    fraction.style.backgroundImage = imagesLoma[Math.floor(Math.random() * imagesLoma.length)];
+    fraction.style.backgroundSize = "cover";
+  }else if(fraction.classList.contains("rainbow")) {
+    isDolaqidzeModeActive = false;
+    isLomadzeModeActive = false;
+    fraction.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else {
+    fraction.style.backgroundColor = color;
+  }
+}
+
+
+
+
+createGrid(25);
 
 rainbowMode.addEventListener("click", () => {
+    isDolaqidzeModeActive = false;
+    isLomadzeModeActive = false;
     let fractions = grid.querySelectorAll("div");
     fractions.forEach(fraction => {
         fraction.classList.add("rainbow");
     });
 });
 
-function fractionColor(){
-    if(this.classList.contains("rainbow")){
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
-    }else{
-        this.style.backgroundColor = color;
-    }
-}
-
 function sizePopup(){
     let size = prompt("choose width of ur workplace 1-100 thanks bro");
     if(size<1 || size>100){
-        createGrid(16);
+        createGrid(25);
     }else{
         createGrid(size);
     }

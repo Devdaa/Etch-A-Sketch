@@ -17,20 +17,20 @@
     <main>
         <div class="options">
             <input id="colorPicker" type="color" value="#000000">
-            <button id="colorBtn">Color mode</button>
-            <button id="rainbowBtn">Rainbow mode</button>
-            <button id="dolaBtn">Dolaqidze mode</button>
-            <button id="lomadzeBtn">Lomadze mode</button>
-            <button id="hoverBtn">Hover mode</button>
-            <button id="eraserBtn">Eraser</button>
-            <button id="clearBtn">Clear</button>
-            <button id="toggleBorder">Toggle border</button>
+            <button id="colorBtn" class="glow-on-hover">Color mode</button>
+            <button id="rainbowBtn" class="glow-on-hover">Rainbow mode</button>
+            <button id="dolaBtn" class="glow-on-hover">Dolaqidze mode</button>
+            <button id="lomadzeBtn" class="glow-on-hover">Lomadze mode</button>
+            <button id="hoverBtn" class="glow-on-hover">Hover mode</button>
+            <button id="eraserBtn" class="glow-on-hover">Eraser</button>
+            <button id="clearBtn" class="glow-on-hover">Clear</button>
+            <button id="toggleBorder" class="glow-on-hover">Toggle border</button>
             <div class="changeSize">
                 <input id="sizeSlider" type="range" value="16" min="1" max="100">
             </div>
         </div>
         <div class="right-side">
-            <button id="popup" onclick="sizePopup()">Change size</button>
+            <button id="popup" onclick="sizePopup()" class="glow-on-hover">Change size</button>
             <div class="grid"></div>
         </div>
     </main>
