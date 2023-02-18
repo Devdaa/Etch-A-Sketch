@@ -169,3 +169,9 @@ function sizePopup(){
     }
 }
 
+
+function alertBro(){
+    let message = "sorry bro work in progress bro"
+    alert(message);
+}
+

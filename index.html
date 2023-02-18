@@ -21,7 +21,6 @@
             <button id="rainbowBtn" class="glow-on-hover">Rainbow mode</button>
             <button id="dolaBtn" class="glow-on-hover">Dolaqidze mode</button>
             <button id="lomadzeBtn" class="glow-on-hover">Lomadze mode</button>
-            <button id="hoverBtn" class="glow-on-hover">Hover mode</button>
             <button id="eraserBtn" class="glow-on-hover">Eraser</button>
             <button id="clearBtn" class="glow-on-hover">Clear</button>
             <button id="toggleBorder" class="glow-on-hover">Toggle border</button>
@@ -30,11 +29,26 @@
             </div>
         </div>
         <div class="right-side">
-            <button id="popup" onclick="sizePopup()" class="glow-on-hover">Change size</button>
+            <button id="popup" onclick="sizePopup()" class="glow-on-hover" style="margin-bottom: 25px;">Change size</button>
             <div class="grid"></div>
         </div>
+        <div class="mega-right-side">
+            <button id="fillBro" class="glow-on-hover" onclick=alertBro()>Fill bro</button>
+            <button id="bgBrp" class="glow-on-hover " onclick=alertBro()>Change background bro</button>
+            <button id="lightenBro" class="glow-on-hover" onclick=alertBro()>Lighten mode bro</button>
+            <button id="shaderBro" class="glow-on-hover" onclick=alertBro()>Shader mode bro</button>
+            <button id="hoverBtn" class="glow-on-hover" onclick=alertBro()>Hover mode</button>
+        </div>
     </main>
-
+    <footer class="footer">
+        <p>
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+          letting dolaqidze win this one out of kindness.
+        </p>
+      </footer>
     <script src="scripts.js"></script>
 </body>
 </html>
